@@ -1,0 +1,25 @@
+/* .background{
+    background-image:url(optional_banner_3.jpg) ;
+    background: linear-gradient(rgba(5,7,12,0.50), rgba(5,7,12,0.50));
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+ */
+.logo{
+    height: 30px;
+}
+
+.carousel-item img{
+    height: 45vh;
+    object-fit: cover;
+}
+
+.card{
+    height: 300px;
+}
+
+.cardetails img{
+    height:400px;
+    object-fit: cover;
+}
