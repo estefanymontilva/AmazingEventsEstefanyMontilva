@@ -209,7 +209,7 @@ const data = {
                             <h5 class="card-title">${data.events[i].name}</h5>
                             <p class="card-text">${data.events[i].description}</p>
                             <div class="d-flex justify-content-between">
-                                <p>${data.events[i].price}</p>
+                                <p>$${data.events[i].price}</p>
                                 <a href="#" class="btn btn-secondary ms-auto p-2">Details</a>
     
                             </div>
