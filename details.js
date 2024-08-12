@@ -195,153 +195,56 @@ const data = {
     ],
   };
 
-/*   let contenedor = document.getElementById("contenedor")
-
-for (let i = 0; i < data.events.length; i++) { 
-    
-    contenedor.innerHTML += `
-           
-                <div class="col-12 col-sm-6 col-lg-3 card text-bg-light bg-opacity-50  p-0 card-group">
-                    <img src="${data.events[i].image}" class="card-img-top h-50" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${data.events[i].name}</h5>
-                        <p class="card-text">${data.events[i].description}</p>
-                        <div class="d-flex justify-content-between">
-                            <p>${data.events[i].price}$</p>
-                            <a href="#" class="btn btn-secondary ms-auto p-2">Details</a>
-
-                        </div>
-                    </div>
-                </div>`
-   
-
-    
-}
- */
-
-
-const formatDate = (dateStr) => {
-  const [year, month, day] = dateStr.split("-");
-  return `${day}/${month}/${year}`;
-};
-
-
-const displayEvents = (events) => {
-  const eventsContainer = document.getElementById('eventsContainer');
-  eventsContainer.innerHTML = "";
-
-  events.forEach(event => {
-    const eventDiv = document.createElement('div');
-    eventDiv.classList.add('event','col-12', 'col-sm-6', 'col-lg-3', 'mb-3' );
-
-    eventDiv.innerHTML = `
-      <div class="card text-bg-light bg-opacity-50 h-100">
-        <img src="${event.image}" class="card-img-top" alt="${event.name}">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">${event.name}</h5>
-          <p class="card-text">${event.description}</p>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <p class="mb-0">${event.price}$</p>
-             <a href="details.html?id=${event._id}" class="btn btn-secondary">Details</a>
+ 
+ 
+  const displayEventDetails = (event) => {
+    const eventDetails = document.getElementById('eventDetails');
+    if (eventDetails && event) {
+      eventDetails.innerHTML = `
+        <div class="card mb-3" style="max-width: 740px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="${event.image}" class="img-fluid rounded-start" alt="${event.name}">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">${event.name}</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Date: ${event.date}</li>
+                  <li class="list-group-item">Description: ${event.description}</li>
+                  <li class="list-group-item">Category: ${event.category}</li>
+                  <li class="list-group-item">Place: ${event.place}</li>
+                  <li class="list-group-item">Capacity: ${event.capacity}</li>
+                  <li class="list-group-item">Assistance: ${event.assistance || 'N/A'}</li>
+                  <li class="list-group-item">Price: $${event.price}</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    `
-
-    eventsContainer.appendChild(eventDiv);
-  });
-};
-
-
-const generateFilters = () => {
-  const filterContainer = document.getElementById('filterContainer');
+      `;
+    } else {
+      console.error("Event not found or 'eventDetails' element not found.");
+    }
+  };
   
-
-  const categoryFilterDiv = document.createElement('div');
-  categoryFilterDiv.classList.add('d-flex', 'flex-wrap', 'mb-2','mt-3');
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get('id');
   
-
-  const categories = [...new Set(data.events.map(event => event.category))];
+    console.log('Event ID:', eventId);
   
-  categories.forEach((category, index) => {
-    const filterDiv = document.createElement('div');
-    filterDiv.classList.add('form-check', 'form-check-inline');
-    
-    const checkbox = document.createElement('input');
-    checkbox.classList.add('form-check-input');
-    checkbox.type = 'checkbox';
-    checkbox.id = `inlineCheckbox${index + 1}`;
-    checkbox.value = category;
-
-    const label = document.createElement('label');
-    label.classList.add('form-check-label');
-    label.htmlFor = checkbox.id;
-    label.textContent = category;
-
-    filterDiv.appendChild(checkbox);
-    filterDiv.appendChild(label);
-    categoryFilterDiv.appendChild(filterDiv);
-  });
+    if (!eventId) {
+      console.error("No event ID found in the URL.");
+      return;
+    }
   
-
-  const searchDiv = document.createElement('div');
-  searchDiv.classList.add('navbar', 'bg-body-tertiary');
-  searchDiv.innerHTML = `
-    <div class="container-fluid">
-      <form class="d-flex" role="search">
-        <input id="searchInput" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-        <button  id="searchButton" class="btn btn-outline-secondary" type="button">Search</button>
-      </form>
-    </div>
-  `;
+    const event = data.events.find(e => e._id === eventId);
   
-  filterContainer.appendChild(categoryFilterDiv);
-  filterContainer.appendChild(searchDiv);
-};
-
-
-const getSelectedCategories = () => {
-  const checkboxes = document.querySelectorAll('#filterContainer .form-check-input');
-  const selectedCategories = [];
-  checkboxes.forEach(checkbox => {
-    if (checkbox.checked) {
-      selectedCategories.push(checkbox.value);
+    if (event) {
+      displayEventDetails(event);
+    } else {
+      console.error("Event not found.");
     }
   });
-  return selectedCategories;
-};
-
-
-const filterEvents = () => {
-  const searchInput = document.getElementById('searchInput').value.toLowerCase();
-  const selectedCategories = getSelectedCategories();
-
-  const filteredEvents = data.events.filter(event => {
-    const isNameMatch = event.name.toLowerCase().includes(searchInput);
-    const isCategoryMatch = selectedCategories.length ? selectedCategories.includes(event.category) : true;
-    return isNameMatch && isCategoryMatch;
-  });
-
-  displayEvents(filteredEvents);
-};
-
-
-const setupEventListeners = () => {
-  document.querySelectorAll('#filterContainer .form-check-input').forEach(checkbox => {
-    checkbox.addEventListener('change', filterEvents);
-  });
-
-  document.getElementById('searchButton').addEventListener('click', filterEvents);
-  document.getElementById('searchInput').addEventListener('input', filterEvents);
-};
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  generateFilters();
-  displayEvents(data.events);
-  setupEventListeners();
-});
-
-
-
-
+  

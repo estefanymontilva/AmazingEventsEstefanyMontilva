@@ -1,11 +1,4 @@
-/* .background{
-    background-image:url(optional_banner_3.jpg) ;
-    background: linear-gradient(rgba(5,7,12,0.50), rgba(5,7,12,0.50));
-    background-size: cover;
-    background-repeat: no-repeat;
-    
-}
- */
+
 .logo{
     height: 30px;
 }
@@ -17,9 +10,24 @@
 
 .card{
     height: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .cardetails img{
     height:400px;
     object-fit: cover;
 }
+
+.card-body {
+    flex: 1;
+  }
+
+  .card-footer {
+    margin-top: auto;
+  }
+
+  .form-check-label {
+    margin-bottom: 0;
+  }
