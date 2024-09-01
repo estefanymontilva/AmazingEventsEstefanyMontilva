@@ -1,8 +1,9 @@
-
+.background{
+  background-color: rgba(207, 138, 92, 0.475);
+}
 .logo{
     height: 30px;
 }
-
 .carousel-item img{
     height: 45vh;
     object-fit: cover;
@@ -13,10 +14,27 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 300px;
+    text-align: center;
+}
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img{
+  width: 305px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .cardetails img{
-    height:400px;
+  
+    height:500px;
     object-fit: cover;
 }
 
@@ -30,4 +48,8 @@
 
   .form-check-label {
     margin-bottom: 0;
+  }
+
+  footer{
+  width:200vh
   }

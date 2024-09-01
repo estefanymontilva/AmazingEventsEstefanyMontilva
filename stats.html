@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg bg-dark-subtle">
             <div class="container-fluid">
                 <img class="logo" src="./assets/amazing_brand.png" alt="">
-                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="home.html">Home</a>
@@ -31,9 +31,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./contact.html">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./details.html">Details</a>
-                        </li>
+                      
                         <li class="nav-item">
                             <a class="nav-link" href="./stats.html">Stats</a>
                         </li>
@@ -45,7 +43,7 @@
 
     </header>
 
-    <main>
+    <main class="background">
         <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -91,8 +89,59 @@
         </div>
         
 
-      
-      <div class="d-flex justify-content-center">
+        <div id="tabla" class="d-flex justify-content-center">
+            <div class="mb-3 col-8">
+                <table class="table table-bordered border-dark">
+                    <!-- Tabla 1 -->
+                    <thead>
+                        <tr class="table-secondary">
+                            <th colspan="3">Events Statistics</th>
+                        </tr>
+                        <tr>
+                            <th>Event with Highest % of Attendance</th>
+                            <th>Event with Lowest % of Attendance</th>
+                            <th>Event with Largest Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody id="events-statistics">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    
+                    <!-- Tabla 2 -->
+                    <thead>
+                        <tr class="table-secondary">
+                            <th colspan="3">Upcoming Events Statistics by Category</th>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <th>Revenues</th>
+                            <th>Percentage of Attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="upcoming-events">
+                    </tbody>
+    
+                    <!-- Tabla 3 -->
+                    <thead>
+                        <tr class="table-secondary">
+                            <th colspan="3">Past Events Statistics by Category</th>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <th>Revenues</th>
+                            <th>Percentage of Attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="past-events">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+     <!--  <div id="tabla" class="d-flex justify-content-center">
         <div class="mb-3 col-8">
             <table class="table table-bordered border-dark">
                 <thead>
@@ -172,7 +221,7 @@
         </div>
 
 
-      </div>  
+      </div>   -->
 
 
     </main>
@@ -199,9 +248,11 @@
         </div>
 
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+        <script type="module" src="./stats.js"></script>
 </body>
 
 </html>
